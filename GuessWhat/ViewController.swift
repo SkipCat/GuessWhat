@@ -8,6 +8,17 @@
 
 
 import UIKit
+import Alamofire
+import PromiseKit
+
+struct TokenData : Codable {
+    var token: String
+}
+
+struct RequestData : Codable {
+    var data: TokenData
+    var status: Int
+}
 
 class ViewController: UIViewController {
     
@@ -26,6 +37,7 @@ class ViewController: UIViewController {
         self.emailField.setRightPaddingPoints(amount: 10)
         self.emailField.keyboardAppearance = UIKeyboardAppearance.dark;
         self.emailField.keyboardType = UIKeyboardType.emailAddress
+        self.emailField.autocapitalizationType = .none;
         self.view.addSubviewGrid(self.emailField, grid: [1, 4, 10, 0.5]) // x, y, width, height
         
         let passwordLabel = UILabel()
@@ -36,7 +48,8 @@ class ViewController: UIViewController {
         self.passwordField.setLeftPaddingPoints(amount: 10)
         self.passwordField.setRightPaddingPoints(amount: 10)
         self.passwordField.keyboardAppearance = UIKeyboardAppearance.dark;
-        self.passwordField.keyboardType = UIKeyboardType.emailAddress
+        self.passwordField.isSecureTextEntry = true
+        self.passwordField.autocapitalizationType = .none;
         self.view.addSubviewGrid(self.passwordField, grid: [1, 5.5, 10, 0.5])
         
         let loginButton = UIButton()
@@ -49,12 +62,61 @@ class ViewController: UIViewController {
         loginButton.addGestureRecognizer(tapGestureRecognizer)
     }
     
+    func isValidEmail(email: String?) -> Bool {
+        guard email != nil else { return false }
+        
+        // There’s some text before the @
+        // There’s some text after the @
+        // There’s at least 2 alpha characters after a
+        let regEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let pred = NSPredicate(format: "SELF MATCHES %@", regEx)
+        
+        return pred.evaluate(with: email)
+    }
+    
+    func getToken(email: String, pwd: String) -> Promise<String> {
+        let parameters = ["email": email, "password": pwd]
+        let headers: HTTPHeaders = [
+            "Accept": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+        
+        return Promise { seal in
+            Alamofire.request("http://edu2.shareyourtime.fr/api/auth/", method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding(), headers: headers).validate().responseJSON { response in
+                switch response.result {
+                case .success:
+                    if let result = response.result.value {
+                        let json = result as! NSDictionary
+                        let jsonData = json["data"]! as! NSDictionary
+                        let token = jsonData["token"]!
+                        seal.fulfill(token as! String)
+                    }
+                case .failure:
+                    seal.reject(response.error!)
+                }
+            }
+        }
+    }
+    
     @objc func loginTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        let emailValue = self.emailField.text! // "!" removes Optional from string
+        let passValue = self.passwordField.text!
         
-        let email = self.emailField.text
-        let pass = self.passwordField.text
+        if (!isValidEmail(email: emailValue)) {
+            print("invalid email")
+        }
         
-        print(email, pass)
+        // Authentication
+        getToken(email: emailValue, pwd: passValue).done { token in
+            Alamofire.request("http://edu2.shareyourtime.fr/api/secret/", headers: ["Authorization": "Bearer \(token)"]).responseJSON { response in
+                if (response.response?.statusCode == 200) {
+                    print("You are authenticated!")
+                    // redirect
+                } else {
+                    print("Invalid token provided")
+                }
+            }
+        }.catch { error in print(error) }
     }
     
     override func didReceiveMemoryWarning() {
