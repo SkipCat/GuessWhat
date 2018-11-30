@@ -110,8 +110,7 @@ class ViewController: UIViewController {
         getToken(email: emailValue, pwd: passValue).done { token in
             Alamofire.request("http://edu2.shareyourtime.fr/api/secret/", headers: ["Authorization": "Bearer \(token)"]).responseJSON { response in
                 if (response.response?.statusCode == 200) {
-                    print("You are authenticated!")
-                    // redirect
+                    self.performSegue(withIdentifier: "HomeViewController", sender: nil)
                 } else {
                     print("Invalid token provided")
                 }

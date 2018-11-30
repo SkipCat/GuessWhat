@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0D0C471027581464CE44ECC6 /* Pods_GuessWhatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B101DA501C47FCB7AF6301D /* Pods_GuessWhatUITests.framework */; };
+		360A2DB021AC42C9000F0695 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360A2DAF21AC42C9000F0695 /* FormViewController.swift */; };
+		360A2DB221AC4341000F0695 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360A2DB121AC4341000F0695 /* HomeViewController.swift */; };
+		360A2DB421AC444A000F0695 /* GuessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360A2DB321AC444A000F0695 /* GuessViewController.swift */; };
 		366294AA21A44C7900398857 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366294A921A44C7900398857 /* AppDelegate.swift */; };
 		366294AC21A44C7900398857 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366294AB21A44C7900398857 /* ViewController.swift */; };
 		366294AF21A44C7900398857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 366294AD21A44C7900398857 /* Main.storyboard */; };
@@ -38,6 +41,9 @@
 
 /* Begin PBXFileReference section */
 		34C5C66FE2483247D95ACD87 /* Pods-GuessWhatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GuessWhatTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GuessWhatTests/Pods-GuessWhatTests.debug.xcconfig"; sourceTree = "<group>"; };
+		360A2DAF21AC42C9000F0695 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		360A2DB121AC4341000F0695 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		360A2DB321AC444A000F0695 /* GuessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessViewController.swift; sourceTree = "<group>"; };
 		366294A621A44C7900398857 /* GuessWhat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuessWhat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		366294A921A44C7900398857 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		366294AB21A44C7900398857 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +126,9 @@
 				366294B021A44C7A00398857 /* Assets.xcassets */,
 				366294B221A44C7A00398857 /* LaunchScreen.storyboard */,
 				366294B521A44C7A00398857 /* Info.plist */,
+				360A2DAF21AC42C9000F0695 /* FormViewController.swift */,
+				360A2DB121AC4341000F0695 /* HomeViewController.swift */,
+				360A2DB321AC444A000F0695 /* GuessViewController.swift */,
 			);
 			path = GuessWhat;
 			sourceTree = "<group>";
@@ -377,8 +386,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				360A2DB021AC42C9000F0695 /* FormViewController.swift in Sources */,
+				360A2DB421AC444A000F0695 /* GuessViewController.swift in Sources */,
 				366294AC21A44C7900398857 /* ViewController.swift in Sources */,
 				366294AA21A44C7900398857 /* AppDelegate.swift in Sources */,
+				360A2DB221AC4341000F0695 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
