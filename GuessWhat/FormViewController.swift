@@ -16,7 +16,7 @@ class FormViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(red: 0.12, green: 0.73, blue: 0.84, alpha: 1.0)
+        self.view.setViewPreferences()
         
         let title = UILabel()
         title.text = "Prerequisites"
@@ -25,7 +25,7 @@ class FormViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         let pickerLabel = UILabel()
         pickerLabel.text = "Select the player who will try to find the word:"
-        pickerLabel.font = pickerLabel.font.withSize(18)
+        pickerLabel.setPreferences()
         pickerLabel.lineBreakMode = .byWordWrapping
         pickerLabel.numberOfLines = 0
         self.view.addSubviewGrid(pickerLabel, grid: [1, 4, 10, 1])
@@ -40,21 +40,15 @@ class FormViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         let wordLabel = UILabel()
         wordLabel.text = "Choose the word to be guessed:"
-        wordLabel.font = wordLabel.font.withSize(18)
+        wordLabel.setPreferences()
         self.view.addSubviewGrid(wordLabel, grid: [1, 6, 10, 0.5])
         
-        wordField.backgroundColor = .white
-        wordField.layer.cornerRadius = 5
+        wordField.setPreferences()
         wordField.attributedPlaceholder = NSAttributedString(string: "Example: beautiful", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        wordField.setLeftPaddingPoints(amount: 10)
-        wordField.setRightPaddingPoints(amount: 10)
-        wordField.autocapitalizationType = .none;
         self.view.addSubviewGrid(wordField, grid: [1, 6.5, 10, 0.5])
         
         let playButton = UIButton()
-        playButton.backgroundColor = .black
-        playButton.layer.cornerRadius = 5
-        playButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        playButton.setPreferences()
         playButton.setTitle("PLAY", for: .normal)
         self.view.addSubviewGrid(playButton, grid: [3.5, 8, 5, 0.5])
         

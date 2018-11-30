@@ -15,40 +15,35 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.setViewPreferences()
         
         let topText = UILabel()
-        topText.text = "Jouer Maintenant"
-        topText.textColor = .gray
-        self.view.addSubviewGrid(topText, grid: [4, 3, 10, 1])
+        topText.text = "Play now"
+        topText.font = UIFont.boldSystemFont(ofSize: 24)
+        self.view.addSubviewGrid(topText, grid: [4.5, 2.5, 10, 0.5])
         
         let playerOneText = UILabel()
         playerOneText.text = "Player 1"
-        self.view.addSubviewGrid(playerOneText, grid: [1, 4, 10, 1])
+        playerOneText.setPreferences()
+        self.view.addSubviewGrid(playerOneText, grid: [1, 4, 10, 0.5])
 
-        playerOneInput.backgroundColor = .gray
+        playerOneInput.setPreferences()
         playerOneInput.attributedPlaceholder = NSAttributedString(string: "Player 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        playerOneInput.setLeftPaddingPoints(amount: 10)
-        playerOneInput.setRightPaddingPoints(amount: 10)
-        playerOneInput.keyboardAppearance = UIKeyboardAppearance.dark;
-        playerOneInput.autocapitalizationType = .none;
-        self.view.addSubviewGrid(playerOneInput, grid: [1, 5, 10, 0.5])
+        self.view.addSubviewGrid(playerOneInput, grid: [1, 4.5, 10, 0.5])
         
         let playerTwoText = UILabel()
         playerTwoText.text = "Player 2"
-        self.view.addSubviewGrid(playerTwoText, grid: [1, 6, 10, 1])
+        playerTwoText.setPreferences()
+        self.view.addSubviewGrid(playerTwoText, grid: [1, 5.5, 10, 0.5])
         
-        playerTwoInput.backgroundColor = .gray
+        playerTwoInput.setPreferences()
         playerTwoInput.attributedPlaceholder = NSAttributedString(string: "Player 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        playerTwoInput.setLeftPaddingPoints(amount: 10)
-        playerTwoInput.setRightPaddingPoints(amount: 10)
-        playerTwoInput.keyboardAppearance = UIKeyboardAppearance.dark;
-        playerTwoInput.autocapitalizationType = .none;
-        self.view.addSubviewGrid(playerTwoInput, grid: [1, 7, 10, 0.5])
+        self.view.addSubviewGrid(playerTwoInput, grid: [1, 6, 10, 0.5])
         
         let buttonLetsGo = UIButton()
-        buttonLetsGo.backgroundColor = .gray
+        buttonLetsGo.setPreferences()
         buttonLetsGo.setTitle("LET'S GO!", for: .normal)
-        self.view.addSubviewGrid(buttonLetsGo, grid: [3.5, 9, 5, 0.5])
+        self.view.addSubviewGrid(buttonLetsGo, grid: [3.5, 7.5, 5, 0.5])
     
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(buttonLetsGo(tapGestureRecognizer:)))
         buttonLetsGo.isUserInteractionEnabled = true

@@ -27,34 +27,29 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.setViewPreferences()
         
         let emailLabel = UILabel()
+        emailLabel.setPreferences()
         emailLabel.text = "Email"
         self.view.addSubviewGrid(emailLabel, grid: [1, 3.5, 10, 0.5])
         
-        self.emailField.backgroundColor = .gray
-        self.emailField.setLeftPaddingPoints(amount: 10)
-        self.emailField.setRightPaddingPoints(amount: 10)
-        self.emailField.keyboardAppearance = UIKeyboardAppearance.dark;
+        self.emailField.setPreferences()
         self.emailField.keyboardType = UIKeyboardType.emailAddress
-        self.emailField.autocapitalizationType = .none;
         self.view.addSubviewGrid(self.emailField, grid: [1, 4, 10, 0.5]) // x, y, width, height
         
         let passwordLabel = UILabel()
+        passwordLabel.setPreferences()
         passwordLabel.text = "Password"
         self.view.addSubviewGrid(passwordLabel, grid: [1, 5, 10, 0.5])
         
-        self.passwordField.backgroundColor = .gray
-        self.passwordField.setLeftPaddingPoints(amount: 10)
-        self.passwordField.setRightPaddingPoints(amount: 10)
-        self.passwordField.keyboardAppearance = UIKeyboardAppearance.dark;
+        self.passwordField.setPreferences()
         self.passwordField.isSecureTextEntry = true
-        self.passwordField.autocapitalizationType = .none;
         self.view.addSubviewGrid(self.passwordField, grid: [1, 5.5, 10, 0.5])
         
         let loginButton = UIButton()
-        loginButton.backgroundColor = UIColor.darkGray
-        loginButton.setTitle("Log in", for: .normal)
+        loginButton.setPreferences()
+        loginButton.setTitle("LOG IN", for: .normal)
         self.view.addSubviewGrid(loginButton, grid: [3.5, 7, 5, 0.5])
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(loginTapped(tapGestureRecognizer:)))
@@ -137,6 +132,10 @@ extension UIView {
         )
         self.addSubview(view)
     }
+    
+    func setViewPreferences() {
+        self.backgroundColor = UIColor(red: 0.12, green: 0.73, blue: 0.84, alpha: 1.0)
+    }
 }
 
 extension UITextField {
@@ -151,5 +150,29 @@ extension UITextField {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
         self.rightView = paddingView
         self.rightViewMode = .always
+    }
+    
+    func setPreferences() {
+        self.backgroundColor = .white
+        self.layer.cornerRadius = 5
+        self.setLeftPaddingPoints(amount: 10)
+        self.setRightPaddingPoints(amount: 10)
+        self.autocapitalizationType = .none;
+    }
+}
+
+extension UIButton {
+    
+    func setPreferences() {
+        self.backgroundColor = .black
+        self.layer.cornerRadius = 5
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+    }
+}
+
+extension UILabel {
+
+    func setPreferences() {
+        self.font = self.font.withSize(18)
     }
 }

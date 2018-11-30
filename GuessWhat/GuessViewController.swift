@@ -28,6 +28,11 @@ class GuessViewController: UIViewController {
         title.font = UIFont.boldSystemFont(ofSize: 24)
         self.view.addSubviewGrid(title, grid: [3.6, 2, 5, 0.5])
         
+        let worldBottomField = UITextField()
+        worldBottomField.setPreferences()
+        worldBottomField.attributedPlaceholder = NSAttributedString(string: "Guess directly", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        self.view.addSubviewGrid(worldBottomField, grid: [12, 6.5, 10, 0.5])
+        
         print("IN GUESS VIEW CONTROLLER", wordToGuess!)
     }
     
