@@ -12,6 +12,7 @@ class FormViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     var players: [String]?
     var pickerData: [String] = [String]()
+    var finderPlayerPicker = UIPickerView()
     var wordField: UITextField = UITextField()
     
     override func viewDidLoad() {
@@ -30,7 +31,6 @@ class FormViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         pickerLabel.numberOfLines = 0
         self.view.addSubviewGrid(pickerLabel, grid: [1, 4, 10, 1])
         
-        let finderPlayerPicker = UIPickerView()
         finderPlayerPicker.backgroundColor = .white
         finderPlayerPicker.layer.cornerRadius = 5
         finderPlayerPicker.delegate = self
@@ -44,7 +44,7 @@ class FormViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         self.view.addSubviewGrid(wordLabel, grid: [1, 6, 10, 0.5])
         
         wordField.setPreferences()
-        wordField.attributedPlaceholder = NSAttributedString(string: "Example: beautiful", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        wordField.attributedPlaceholder = NSAttributedString(string: "Example: beautiful", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         self.view.addSubviewGrid(wordField, grid: [1, 6.5, 10, 0.5])
         
         let playButton = UIButton()
@@ -71,13 +71,16 @@ class FormViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     @objc func loginTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         if let wordToGuess = wordField.text, (wordToGuess != "") {
-            self.performSegue(withIdentifier: "GuessViewController", sender: wordToGuess)
+            let selectedPlayer = pickerData[finderPlayerPicker.selectedRow(inComponent: 0)]
+            self.performSegue(withIdentifier: "GuessViewController", sender: [wordToGuess, selectedPlayer])
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let guessViewController = segue.destination as? GuessViewController {
-            guessViewController.wordToGuess = sender as? String
+            let array = sender as! [String]
+            guessViewController.wordToGuess = array[0] as String
+            guessViewController.finderPlayer = array[1] as String
         }
     }
     

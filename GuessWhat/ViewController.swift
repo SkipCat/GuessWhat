@@ -138,6 +138,30 @@ extension UIView {
     }
 }
 
+extension UITextView {
+    
+//    func setLeftPaddingPoints(amount: CGFloat) {
+//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+//        self.leftView = paddingView
+//        self.leftViewMode = .always
+//    }
+//    
+//    func setRightPaddingPoints(amount: CGFloat) {
+//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+//        self.rightView = paddingView
+//        self.rightViewMode = .always
+//    }
+    
+    func setPreferences() {
+        self.backgroundColor = .white
+        self.layer.cornerRadius = 5
+//        self.setLeftPaddingPoints(amount: 10)
+//        self.setRightPaddingPoints(amount: 10)
+//        self.font = UIFont(name: (self.font?.fontName), size: 18)
+        self.autocapitalizationType = .none;
+    }
+}
+
 extension UITextField {
     
     func setLeftPaddingPoints(amount: CGFloat) {
