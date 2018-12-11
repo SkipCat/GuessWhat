@@ -19,10 +19,20 @@ class FormViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         super.viewDidLoad()
         self.view.setViewPreferences()
         
+        let nav = self.view.setNavWithBackBtn()
+        let navView: UIView = nav[0] as! UIView
+        let goBackBtn: UIButton = nav[1] as! UIButton
+        goBackBtn.addTarget(self, action: #selector(goBack(tapGestureRecognizer:)), for: .touchUpInside)
+        
+        let navLabel = UILabel()
+        navLabel.text = "Prerequisites"
+        navLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        navView.addSubviewGrid(navLabel, grid: [4.4, 5.5, 4, 6])
+
         let title = UILabel()
-        title.text = "Prerequisites"
+        title.text = "Set the game :)"
         title.font = UIFont.boldSystemFont(ofSize: 24)
-        self.view.addSubviewGrid(title, grid: [4, 2.5, 5, 0.5])
+        self.view.addSubviewGrid(title, grid: [3.5, 2.5, 5, 0.5])
         
         let pickerLabel = UILabel()
         pickerLabel.text = "Select the player who will try to find the word:"
@@ -67,6 +77,10 @@ class FormViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[row]
+    }
+    
+    @objc func goBack(tapGestureRecognizer: UITapGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func loginTapped(tapGestureRecognizer: UITapGestureRecognizer) {

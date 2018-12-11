@@ -29,6 +29,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.setViewPreferences()
         
+        let navView: UIView = self.view.setNav()
+        
+        let navLabel = UILabel()
+        navLabel.text = "GuessWhat"
+        navLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        navView.addSubviewGrid(navLabel, grid: [4.5, 5.5, 3, 6])
+        
         let emailLabel = UILabel()
         emailLabel.setPreferences()
         emailLabel.text = "Email"
@@ -136,27 +143,30 @@ extension UIView {
     func setViewPreferences() {
         self.backgroundColor = UIColor(red: 0.12, green: 0.73, blue: 0.84, alpha: 1.0)
     }
+    
+    func setNav() -> UIView {
+        let navView: UIView = UIView()
+        navView.backgroundColor = UIColor(red: 0.06, green: 0.49, blue: 0.67, alpha: 1)
+        self.addSubviewGrid(navView, grid: [0, 0, 12, 1.2])
+        return navView
+    }
+    
+    func setNavWithBackBtn() -> [Any?] {
+        let navView: UIView = self.setNav()
+        let goBackBtn = UIButton()
+        
+        goBackBtn.setTitle("Go back", for: .normal)
+        navView.addSubviewGrid(goBackBtn, grid: [0.5, 5.5, 3, 6])
+        
+        return [navView, goBackBtn]
+    }
 }
 
 extension UITextView {
     
-//    func setLeftPaddingPoints(amount: CGFloat) {
-//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-//        self.leftView = paddingView
-//        self.leftViewMode = .always
-//    }
-//    
-//    func setRightPaddingPoints(amount: CGFloat) {
-//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-//        self.rightView = paddingView
-//        self.rightViewMode = .always
-//    }
-    
     func setPreferences() {
         self.backgroundColor = .white
         self.layer.cornerRadius = 5
-//        self.setLeftPaddingPoints(amount: 10)
-//        self.setRightPaddingPoints(amount: 10)
 //        self.font = UIFont(name: (self.font?.fontName), size: 18)
         self.autocapitalizationType = .none;
     }

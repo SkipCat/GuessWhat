@@ -17,6 +17,8 @@ class GuessViewController: UIViewController, UITextViewDelegate {
     var questionField: UITextView = UITextView()
     let bottomView = UIView()
     
+    let historyScrollView: UIScrollView = UIScrollView()
+    
 //    let scrollView: UIScrollView = {
 //        let v = UIScrollView()
 //        v.translatesAutoresizingMaskIntoConstraints = false
@@ -30,37 +32,43 @@ class GuessViewController: UIViewController, UITextViewDelegate {
         
 //        self.view.addSubview(scrollView)
         
-        let playerLabel = UILabel()
-        playerLabel.text = finderPlayer!
-        self.view.addSubviewGrid(playerLabel, grid: [3.6, 1, 5, 0.5])
+        let nav = self.view.setNavWithBackBtn()
+        let navView: UIView = nav[0] as! UIView
+        let goBackBtn: UIButton = nav[1] as! UIButton
+        goBackBtn.addTarget(self, action: #selector(goBack(tapGestureRecognizer:)), for: .touchUpInside)
         
-        let title = UILabel()
-        title.text = "Guess the word"
-        title.font = UIFont.boldSystemFont(ofSize: 24)
-        self.view.addSubviewGrid(title, grid: [3.6, 1.5, 5, 0.5])
+        let navLabel = UILabel()
+        navLabel.text = "Guess the word"
+        navLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        navView.addSubviewGrid(navLabel, grid: [4, 5.5, 4, 6])
+        
+        let playerLabel = UILabel()
+        playerLabel.setPreferences()
+        playerLabel.text = "\(finderPlayer!), guess the word!"
+        self.view.addSubviewGrid(playerLabel, grid: [1, 1.4, 10, 0.5])
         
         questionField.setPreferences()
-//        questionField.frame.size.height = 3
-        // set number of taps to 1 to type text
-        self.view.addSubviewGrid(questionField, grid: [1, 2.5, 10, 1])
+        self.view.addSubviewGrid(questionField, grid: [1, 2, 10, 1])
         
         let yesButton = UIButton()
         yesButton.setTitle("Yes", for: .normal)
         yesButton.setPreferences()
-        yesButton.addTarget(self, action: #selector(askQuestion(tapGestureRecognizer:)), for: .touchUpInside)
-        self.view.addSubviewGrid(yesButton, grid: [1, 3.6, 1.4, 0.5])
+        yesButton.addTarget(self, action: #selector(askQuestion), for: .touchUpInside)
+        self.view.addSubviewGrid(yesButton, grid: [1, 3.1, 1.4, 0.5])
         
         let noButton = UIButton()
         noButton.setTitle("No", for: .normal)
         noButton.setPreferences()
-        noButton.addTarget(self, action: #selector(askQuestion(tapGestureRecognizer:)), for: .touchUpInside)
-        self.view.addSubviewGrid(noButton, grid: [2.6, 3.6, 1.4, 0.5])
+        noButton.addTarget(self, action: #selector(askQuestion), for: .touchUpInside)
+        self.view.addSubviewGrid(noButton, grid: [2.6, 3.1, 1.4, 0.5])
         
         let idkButton = UIButton()
         idkButton.setTitle("Don't know", for: .normal)
         idkButton.setPreferences()
-        idkButton.addTarget(self, action: #selector(askQuestion(tapGestureRecognizer:)), for: .touchUpInside)
-        self.view.addSubviewGrid(idkButton, grid: [4.2, 3.6, 3.4, 0.5])
+        idkButton.addTarget(self, action: #selector(askQuestion), for: .touchUpInside)
+        self.view.addSubviewGrid(idkButton, grid: [4.2, 3.1, 3.4, 0.5])
+        
+        self.view.addSubviewGrid(historyScrollView, grid: [1, 4, 10, 6.5])
         
         bottomView.backgroundColor = UIColor(red: 0.06, green: 0.49, blue: 0.67, alpha: 1)
         self.view.addSubviewGrid(bottomView, grid: [0, 11, 12, 1])
@@ -77,12 +85,40 @@ class GuessViewController: UIViewController, UITextViewDelegate {
         print("IN GUESS VIEW CONTROLLER", wordToGuess!, finderPlayer!)
     }
     
-    @objc func askQuestion(tapGestureRecognizer: UITapGestureRecognizer) {
-        print(questionField.text)
+    @objc func goBack(tapGestureRecognizer: UITapGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    var history = ""
+    let newLabel = UILabel()
+    var scrollViewHeight = 100
+    
+    @objc func askQuestion(sender: UIButton) {
         if let question = questionField.text, (question != "") {
-            print("question", questionField.text!)
+            let question: String = questionField.text!
+            let answer = sender.title(for: .normal)
+            
+            historyScrollView.contentSize = CGSize(width: historyScrollView.frame.size.width, height: CGFloat(scrollViewHeight))
+            questionField.text = ""
+            newLabel.text = ""
+            
+            newLabel.numberOfLines = 0
+            scrollViewHeight = scrollViewHeight + 20
+            
+            history += question + " - " + answer! + "\n"
+            newLabel.text = history
+            
+            historyScrollView.addSubviewGrid(newLabel, grid: [0.3, 0.3, 12, 12])
+            newLabel.sizeToFit()
         }
     }
+//
+//    @objc func askQuestion(tapGestureRecognizer: UITapGestureRecognizer) {
+//        print(questionField.text)
+//        if let question = questionField.text, (question != "") {
+//            print("question", questionField.text!)
+//        }
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

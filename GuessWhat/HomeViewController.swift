@@ -17,13 +17,25 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.view.setViewPreferences()
         
+        let navView: UIView = self.view.setNav()
+        
+        let navLabel = UILabel()
+        navLabel.text = "GuessWhat"
+        navLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        navView.addSubviewGrid(navLabel, grid: [4.5, 5.5, 3, 6])
+        
+        let historyBtn = UIButton()
+        historyBtn.setTitle("History", for: .normal)
+        navView.addSubviewGrid(historyBtn, grid: [9, 5.5, 3, 6])
+        historyBtn.addTarget(self, action: #selector(goToHistory(tapGestureRecognizer:)), for: .touchUpInside)
+        
         let topText = UILabel()
         topText.text = "Play now"
         topText.font = UIFont.boldSystemFont(ofSize: 24)
         self.view.addSubviewGrid(topText, grid: [4.5, 2.5, 10, 0.5])
         
         let playerOneText = UILabel()
-        playerOneText.text = "Player 1"
+        playerOneText.text = "Player 1 (owner of this phone)"
         playerOneText.setPreferences()
         self.view.addSubviewGrid(playerOneText, grid: [1, 4, 10, 0.5])
 
@@ -54,6 +66,11 @@ class HomeViewController: UIViewController {
         if let FormViewController = segue.destination as? FormViewController {
             FormViewController.players = sender as? [String]
         }
+    }
+    
+    @objc func goToHistory(tapGestureRecognizer: UITapGestureRecognizer) {
+        print("click history")
+        self.performSegue(withIdentifier: "HistoryViewController", sender: nil)
     }
 
     @objc func buttonLetsGo(tapGestureRecognizer: UITapGestureRecognizer) {

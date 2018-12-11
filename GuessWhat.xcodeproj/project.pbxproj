@@ -11,6 +11,7 @@
 		360A2DB021AC42C9000F0695 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360A2DAF21AC42C9000F0695 /* FormViewController.swift */; };
 		360A2DB221AC4341000F0695 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360A2DB121AC4341000F0695 /* HomeViewController.swift */; };
 		360A2DB421AC444A000F0695 /* GuessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360A2DB321AC444A000F0695 /* GuessViewController.swift */; };
+		3623BA8921BFF905006A345E /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623BA8821BFF905006A345E /* HistoryViewController.swift */; };
 		366294AA21A44C7900398857 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366294A921A44C7900398857 /* AppDelegate.swift */; };
 		366294AC21A44C7900398857 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366294AB21A44C7900398857 /* ViewController.swift */; };
 		366294AF21A44C7900398857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 366294AD21A44C7900398857 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		360A2DAF21AC42C9000F0695 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		360A2DB121AC4341000F0695 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		360A2DB321AC444A000F0695 /* GuessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessViewController.swift; sourceTree = "<group>"; };
+		3623BA8821BFF905006A345E /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		366294A621A44C7900398857 /* GuessWhat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuessWhat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		366294A921A44C7900398857 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		366294AB21A44C7900398857 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				360A2DAF21AC42C9000F0695 /* FormViewController.swift */,
 				360A2DB121AC4341000F0695 /* HomeViewController.swift */,
 				360A2DB321AC444A000F0695 /* GuessViewController.swift */,
+				3623BA8821BFF905006A345E /* HistoryViewController.swift */,
 			);
 			path = GuessWhat;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				360A2DB021AC42C9000F0695 /* FormViewController.swift in Sources */,
 				360A2DB421AC444A000F0695 /* GuessViewController.swift in Sources */,
 				366294AC21A44C7900398857 /* ViewController.swift in Sources */,
+				3623BA8921BFF905006A345E /* HistoryViewController.swift in Sources */,
 				366294AA21A44C7900398857 /* AppDelegate.swift in Sources */,
 				360A2DB221AC4341000F0695 /* HomeViewController.swift in Sources */,
 			);
