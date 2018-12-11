@@ -75,6 +75,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ejY-Mk-QlI"/>
                     </view>
+                    <connections>
+                        <segue destination="bWs-EJ-AuN" kind="show" identifier="SummaryViewController" id="amD-gk-yhU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gV0-Az-fNj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -93,7 +96,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ds-lQ-cQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1806" y="469"/>
+            <point key="canvasLocation" x="2050" y="796"/>
+        </scene>
+        <!--Summary View Controller-->
+        <scene sceneID="6Ef-63-uXf">
+            <objects>
+                <viewController id="bWs-EJ-AuN" customClass="SummaryViewController" customModule="GuessWhat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Eo5-ut-vFK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="gjT-Op-Xyo"/>
+                    </view>
+                    <connections>
+                        <segue destination="Kcm-du-CQJ" kind="show" identifier="HistoryViewController" id="SQx-ib-ica"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5A4-qO-ahU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3383" y="-217"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="SQx-ib-ica"/>
+    </inferredMetricsTieBreakers>
 </document>

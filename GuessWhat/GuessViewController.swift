@@ -13,24 +13,18 @@ class GuessViewController: UIViewController, UITextViewDelegate {
     // Data received from previous form
     var wordToGuess: String?
     var finderPlayer: String?
+    let answerPlayer: String = "test"
     
-    var questionField: UITextView = UITextView()
-    let bottomView = UIView()
-    
+    let questionField: UITextView = UITextView()
+    let guessWordField: UITextField = UITextField()
+    let bottomView: UIView = UIView()
     let historyScrollView: UIScrollView = UIScrollView()
     
-//    let scrollView: UIScrollView = {
-//        let v = UIScrollView()
-//        v.translatesAutoresizingMaskIntoConstraints = false
-//        v.backgroundColor = .cyan
-//        return v
-//    }()
-    
+    var answerCount: Int = 0
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.setViewPreferences()
-        
-//        self.view.addSubview(scrollView)
         
         let nav = self.view.setNavWithBackBtn()
         let navView: UIView = nav[0] as! UIView
@@ -73,7 +67,6 @@ class GuessViewController: UIViewController, UITextViewDelegate {
         bottomView.backgroundColor = UIColor(red: 0.06, green: 0.49, blue: 0.67, alpha: 1)
         self.view.addSubviewGrid(bottomView, grid: [0, 11, 12, 1])
         
-        let guessWordField = UITextField()
         guessWordField.setPreferences()
         bottomView.addSubviewGrid(guessWordField, grid: [1, 3, 8, 6])
         
@@ -81,8 +74,7 @@ class GuessViewController: UIViewController, UITextViewDelegate {
         guessWordBtn.setPreferences()
         guessWordBtn.setTitle("OK", for: .normal)
         bottomView.addSubviewGrid(guessWordBtn, grid: [9.5, 3, 1.5, 6])
-        
-        print("IN GUESS VIEW CONTROLLER", wordToGuess!, finderPlayer!)
+        guessWordBtn.addTarget(self, action: #selector(askWord), for: .touchUpInside)
     }
     
     @objc func goBack(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -92,6 +84,17 @@ class GuessViewController: UIViewController, UITextViewDelegate {
     var history = ""
     let newLabel = UILabel()
     var scrollViewHeight = 100
+    
+    @objc func askWord(sender: UIButton) {
+        if let word = guessWordField.text, (word != "") {
+            self.performSegue(withIdentifier: "SummaryViewController", sender: [
+                word,
+                finderPlayer!,
+                answerPlayer,
+                answerCount
+            ])
+        }
+    }
     
     @objc func askQuestion(sender: UIButton) {
         if let question = questionField.text, (question != "") {
@@ -104,6 +107,7 @@ class GuessViewController: UIViewController, UITextViewDelegate {
             
             newLabel.numberOfLines = 0
             scrollViewHeight = scrollViewHeight + 20
+            answerCount = answerCount + 1
             
             history += question + " - " + answer! + "\n"
             newLabel.text = history
@@ -112,13 +116,16 @@ class GuessViewController: UIViewController, UITextViewDelegate {
             newLabel.sizeToFit()
         }
     }
-//
-//    @objc func askQuestion(tapGestureRecognizer: UITapGestureRecognizer) {
-//        print(questionField.text)
-//        if let question = questionField.text, (question != "") {
-//            print("question", questionField.text!)
-//        }
-//    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let SummaryViewController = segue.destination as? SummaryViewController {
+        let array = sender as! [Any]
+            SummaryViewController.wordToGuess = array[0] as! String
+            SummaryViewController.finderPlayer = array[1] as! String
+            SummaryViewController.answerPlayer = array[2] as! String
+            SummaryViewController.answerCount = array[3] as! Int
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

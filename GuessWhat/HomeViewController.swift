@@ -69,7 +69,6 @@ class HomeViewController: UIViewController {
     }
     
     @objc func goToHistory(tapGestureRecognizer: UITapGestureRecognizer) {
-        print("click history")
         self.performSegue(withIdentifier: "HistoryViewController", sender: nil)
     }
 
