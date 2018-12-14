@@ -96,7 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ds-lQ-cQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2050" y="796"/>
+            <point key="canvasLocation" x="2193" y="801"/>
         </scene>
         <!--Summary View Controller-->
         <scene sceneID="6Ef-63-uXf">
@@ -110,14 +110,16 @@
                     </view>
                     <connections>
                         <segue destination="Kcm-du-CQJ" kind="show" identifier="HistoryViewController" id="SQx-ib-ica"/>
+                        <segue destination="Eyi-cz-uJZ" kind="show" identifier="FormViewController" id="GaN-KF-9ta"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5A4-qO-ahU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3383" y="-217"/>
+            <point key="canvasLocation" x="3561" y="27"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="SQx-ib-ica"/>
+        <segue reference="GaN-KF-9ta"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -90,7 +90,18 @@ class FormViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @objc func loginTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         if let wordToGuess = wordField.text, (wordToGuess != "") {
             let selectedPlayer = pickerData[finderPlayerPicker.selectedRow(inComponent: 0)]
-            self.performSegue(withIdentifier: "GuessViewController", sender: [wordToGuess, selectedPlayer])
+            var otherPlayer = ""
+            
+            for data in pickerData {
+                if data != selectedPlayer {
+                    otherPlayer = data
+                }
+            }
+            
+            self.performSegue(
+                withIdentifier: "GuessViewController",
+                sender: [wordToGuess, selectedPlayer, otherPlayer
+            ])
         }
     }
     
@@ -99,6 +110,7 @@ class FormViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             let array = sender as! [String]
             guessViewController.wordToGuess = array[0] as String
             guessViewController.finderPlayer = array[1] as String
+            guessViewController.answerPlayer = array[2] as String
         }
     }
     

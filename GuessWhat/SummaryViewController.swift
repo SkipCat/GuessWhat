@@ -83,11 +83,20 @@ class SummaryViewController: UIViewController {
         playAgainBtn.setTitle("PLAY AGAIN", for: .normal)
         playAgainBtn.setPreferences()
         self.view.addSubviewGrid(playAgainBtn, grid: [3.5, 8, 5, 0.5])
-        
-        // add perform segue to go to FormViewController
+        playAgainBtn.addTarget(self, action: #selector(goToGameSettings), for: .touchUpInside)
     }
     
     @objc func goToHistory(tapGestureRecognizer: UITapGestureRecognizer) {
         self.performSegue(withIdentifier: "HistoryViewController", sender: nil)
+    }
+    
+    @objc func goToGameSettings(sender: UIButton) {
+        self.performSegue(withIdentifier: "FormViewController", sender: [finderPlayer, answerPlayer])
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let FormViewController = segue.destination as? FormViewController {
+            FormViewController.players = sender as? [String]
+        }
     }
 }

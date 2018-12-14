@@ -13,7 +13,7 @@ class GuessViewController: UIViewController, UITextViewDelegate {
     // Data received from previous form
     var wordToGuess: String?
     var finderPlayer: String?
-    let answerPlayer: String = "test"
+    var answerPlayer: String?
     
     let questionField: UITextView = UITextView()
     let guessWordField: UITextField = UITextField()
