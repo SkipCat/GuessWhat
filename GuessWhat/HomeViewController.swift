@@ -31,6 +31,7 @@ class HomeViewController: UIViewController {
         
         let topText = UILabel()
         topText.text = "Play now"
+        topText.setPreferences()
         topText.font = UIFont.boldSystemFont(ofSize: 24)
         self.view.addSubviewGrid(topText, grid: [4.5, 2.5, 10, 0.5])
         

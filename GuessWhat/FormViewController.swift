@@ -31,6 +31,7 @@ class FormViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
 
         let title = UILabel()
         title.text = "Set the game :)"
+        title.setPreferences()
         title.font = UIFont.boldSystemFont(ofSize: 24)
         self.view.addSubviewGrid(title, grid: [3.5, 2.5, 5, 0.5])
         
@@ -54,7 +55,10 @@ class FormViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         self.view.addSubviewGrid(wordLabel, grid: [1, 6, 10, 0.5])
         
         wordField.setPreferences()
-        wordField.attributedPlaceholder = NSAttributedString(string: "Example: beautiful", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        wordField.attributedPlaceholder = NSAttributedString(
+            string: "beautiful",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
         self.view.addSubviewGrid(wordField, grid: [1, 6.5, 10, 0.5])
         
         let playButton = UIButton()

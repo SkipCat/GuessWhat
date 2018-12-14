@@ -43,6 +43,10 @@ class ViewController: UIViewController {
         
         self.emailField.setPreferences()
         self.emailField.keyboardType = UIKeyboardType.emailAddress
+        self.emailField.attributedPlaceholder = NSAttributedString(
+            string: "firstname.name@company.com",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
         self.view.addSubviewGrid(self.emailField, grid: [1, 4, 10, 0.5]) // x, y, width, height
         
         let passwordLabel = UILabel()
@@ -52,6 +56,10 @@ class ViewController: UIViewController {
         
         self.passwordField.setPreferences()
         self.passwordField.isSecureTextEntry = true
+        self.passwordField.attributedPlaceholder = NSAttributedString(
+            string: "Compl3xPassw0rD",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
         self.view.addSubviewGrid(self.passwordField, grid: [1, 5.5, 10, 0.5])
         
         let loginButton = UIButton()
@@ -165,9 +173,10 @@ extension UIView {
 extension UITextView {
     
     func setPreferences() {
+        self.textColor = UIColor(hexString: "#202020")
         self.backgroundColor = .white
         self.layer.cornerRadius = 5
-//        self.font = UIFont(name: (self.font?.fontName), size: 18)
+        self.font = .systemFont(ofSize: 16)
         self.autocapitalizationType = .none;
     }
 }
@@ -187,6 +196,7 @@ extension UITextField {
     }
     
     func setPreferences() {
+        self.textColor = UIColor(hexString: "#202020")
         self.backgroundColor = .white
         self.layer.cornerRadius = 5
         self.setLeftPaddingPoints(amount: 10)
@@ -198,7 +208,7 @@ extension UITextField {
 extension UIButton {
     
     func setPreferences() {
-        self.backgroundColor = .black
+        self.backgroundColor = UIColor(hexString: "#202020")
         self.layer.cornerRadius = 5
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
@@ -208,5 +218,42 @@ extension UILabel {
 
     func setPreferences() {
         self.font = self.font.withSize(18)
+        self.textColor = UIColor(hexString: "#202020")
+    }
+}
+
+extension UIColor {
+    
+    convenience init(hexString: String, alpha: CGFloat = 1.0) {
+        let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let scanner = Scanner(string: hexString)
+        
+        if (hexString.hasPrefix("#")) {
+            scanner.scanLocation = 1
+        }
+        
+        var color: UInt32 = 0
+        scanner.scanHexInt32(&color)
+        let mask = 0x000000FF
+        let r = Int(color >> 16) & mask
+        let g = Int(color >> 8) & mask
+        let b = Int(color) & mask
+        let red   = CGFloat(r) / 255.0
+        let green = CGFloat(g) / 255.0
+        let blue  = CGFloat(b) / 255.0
+        
+        self.init(red:red, green:green, blue:blue, alpha:alpha)
+    }
+    
+    func toHexString() -> String {
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+        let rgb:Int = (Int)(r*255) << 16 | (Int)(g*255) << 8 | (Int)(b*255) << 0
+        
+        return String(format:"#%06x", rgb)
     }
 }

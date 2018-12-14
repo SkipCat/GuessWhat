@@ -40,37 +40,49 @@ class SummaryViewController: UIViewController {
         historyBtn.addTarget(self, action: #selector(goToHistory(tapGestureRecognizer:)), for: .touchUpInside)
     
         let winnerNameText = UILabel()
+        winnerNameText.setPreferences()
         winnerNameText.text = playerWin
         winnerNameText.textAlignment = .center
         winnerNameText.font = winnerNameText.font.withSize(24)
-        self.view.addSubviewGrid(winnerNameText, grid: [0, 1.5, 12, 2])
+        self.view.addSubviewGrid(winnerNameText, grid: [0, 2, 12, 2])
         
         let topText = UILabel()
+        topText.setPreferences()
         topText.text = "won the game!"
         topText.textAlignment = .center
-        self.view.addSubviewGrid(topText, grid: [0, 2, 12, 2])
+        self.view.addSubviewGrid(topText, grid: [0, 2.5, 12, 2])
         
         let wordToGuessText = UILabel()
+        wordToGuessText.setPreferences()
         wordToGuessText.text = wordToGuess
         wordToGuessText.textAlignment = .center
-        wordToGuessText.font = winnerNameText.font.withSize(24)
+        wordToGuessText.font = wordToGuessText.font.withSize(24)
         self.view.addSubviewGrid(wordToGuessText, grid: [0, 3.5, 12, 2])
         
         let wordText = UILabel()
+        wordText.setPreferences()
         wordText.text = "was the word to find"
         wordText.textAlignment = .center
         self.view.addSubviewGrid(wordText, grid: [0, 4, 12, 2])
         
+        let countAnswer = UILabel()
+        countAnswer.setPreferences()
+        countAnswer.text = "\(answerCount!)"
+        countAnswer.textAlignment = .center
+        countAnswer.font = countAnswer.font.withSize(24)
+        self.view.addSubviewGrid(countAnswer, grid: [0, 5, 12, 2])
+        
         let countAnswerText = UILabel()
-        countAnswerText.text = "\(String(describing: answerCount!)) number of questions \n asked before guessing the word"
+        countAnswerText.setPreferences()
+        countAnswerText.text = "is the number of questions \n asked before guessing the word"
         countAnswerText.numberOfLines = 2
         countAnswerText.textAlignment = .center
-        self.view.addSubviewGrid(countAnswerText, grid: [0, 5.5, 12, 2])
+        self.view.addSubviewGrid(countAnswerText, grid: [0, 5.7, 12, 2])
         
         let playAgainBtn = UIButton()
-        playAgainBtn.setTitle("Play again", for: .normal)
+        playAgainBtn.setTitle("PLAY AGAIN", for: .normal)
         playAgainBtn.setPreferences()
-        self.view.addSubviewGrid(playAgainBtn, grid: [4.5, 8.5, 3.2, 0.5])
+        self.view.addSubviewGrid(playAgainBtn, grid: [3.5, 8, 5, 0.5])
         
         // add perform segue to go to FormViewController
     }
