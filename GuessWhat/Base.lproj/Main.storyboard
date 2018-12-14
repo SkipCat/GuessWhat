@@ -110,7 +110,7 @@
                     </view>
                     <connections>
                         <segue destination="Kcm-du-CQJ" kind="show" identifier="HistoryViewController" id="SQx-ib-ica"/>
-                        <segue destination="Eyi-cz-uJZ" kind="show" identifier="FormViewController" id="GaN-KF-9ta"/>
+                        <segue destination="gDS-Jp-ekA" kind="show" identifier="HomeViewController" id="Vfh-Pg-lQI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5A4-qO-ahU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -120,6 +120,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="SQx-ib-ica"/>
-        <segue reference="GaN-KF-9ta"/>
+        <segue reference="Vfh-Pg-lQI"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -41,7 +41,10 @@ class HomeViewController: UIViewController {
         self.view.addSubviewGrid(playerOneText, grid: [1, 4, 10, 0.5])
 
         playerOneInput.setPreferences()
-        playerOneInput.attributedPlaceholder = NSAttributedString(string: "Player 1", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        playerOneInput.attributedPlaceholder = NSAttributedString(
+            string: "James",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
         self.view.addSubviewGrid(playerOneInput, grid: [1, 4.5, 10, 0.5])
         
         let playerTwoText = UILabel()
@@ -50,7 +53,10 @@ class HomeViewController: UIViewController {
         self.view.addSubviewGrid(playerTwoText, grid: [1, 5.5, 10, 0.5])
         
         playerTwoInput.setPreferences()
-        playerTwoInput.attributedPlaceholder = NSAttributedString(string: "Player 2", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        playerTwoInput.attributedPlaceholder = NSAttributedString(
+            string: "Mary",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
         self.view.addSubviewGrid(playerTwoInput, grid: [1, 6, 10, 0.5])
         
         let buttonLetsGo = UIButton()

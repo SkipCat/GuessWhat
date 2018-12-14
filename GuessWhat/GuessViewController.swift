@@ -68,6 +68,10 @@ class GuessViewController: UIViewController, UITextViewDelegate {
         self.view.addSubviewGrid(bottomView, grid: [0, 11, 12, 1])
         
         guessWordField.setPreferences()
+        guessWordField.attributedPlaceholder = NSAttributedString(
+            string: "Guess word directly",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
         bottomView.addSubviewGrid(guessWordField, grid: [1, 3, 8, 6])
         
         let guessWordBtn = UIButton()

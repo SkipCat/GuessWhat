@@ -91,12 +91,6 @@ class SummaryViewController: UIViewController {
     }
     
     @objc func goToGameSettings(sender: UIButton) {
-        self.performSegue(withIdentifier: "FormViewController", sender: [finderPlayer, answerPlayer])
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let FormViewController = segue.destination as? FormViewController {
-            FormViewController.players = sender as? [String]
-        }
+        self.performSegue(withIdentifier: "HomeViewController", sender: nil)
     }
 }
