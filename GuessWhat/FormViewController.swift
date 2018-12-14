@@ -100,7 +100,7 @@ class FormViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             
             self.performSegue(
                 withIdentifier: "GuessViewController",
-                sender: [wordToGuess, selectedPlayer, otherPlayer
+                sender: [wordToGuess.lowercased(), selectedPlayer, otherPlayer
             ])
         }
     }

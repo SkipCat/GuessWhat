@@ -87,11 +87,11 @@ class GuessViewController: UIViewController, UITextViewDelegate {
     
     @objc func askWord(sender: UIButton) {
         if let word = guessWordField.text, (word != "") {
-            if word == wordToGuess! {
+            if (word == wordToGuess! || word.lowercased() == wordToGuess!) {
                 self.performSegue(withIdentifier: "SummaryViewController", sender: [
-                    word,
+                    word.lowercased(),
                     finderPlayer!,
-                    answerPlayer,
+                    answerPlayer!,
                     answerCount
                 ])
             }
