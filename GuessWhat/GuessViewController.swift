@@ -92,6 +92,28 @@ class GuessViewController: UIViewController, UITextViewDelegate {
     @objc func askWord(sender: UIButton) {
         if let word = guessWordField.text, (word != "") {
             if (word == wordToGuess! || word.lowercased() == wordToGuess!) {
+                
+                // set data to store
+                let defaults = UserDefaults.standard
+                let game: [String: Any] = [
+                    "finderPlayer": finderPlayer!,
+                    "answerPlayer": answerPlayer!,
+                    "wordToGuess": word.lowercased(),
+                    "answerCount": answerCount
+                ]
+                
+                // store data in app
+                if let historyData = defaults.array(forKey: "history") {
+                    print(historyData) // Another String Value
+                    var newHistory = historyData
+                    newHistory.append(game)
+                    print("new history", newHistory)
+                    UserDefaults.standard.removeObject(forKey: "history")
+                    UserDefaults.standard.set(newHistory, forKey: "history")
+                } else {
+                    defaults.set([game], forKey: "history")
+                }
+                
                 self.performSegue(withIdentifier: "SummaryViewController", sender: [
                     word.lowercased(),
                     finderPlayer!,
